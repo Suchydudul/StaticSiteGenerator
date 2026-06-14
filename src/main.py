@@ -1,12 +1,10 @@
-from textnode import TextNode
+from textnode import TextNode, TextType
 
 
 def main():
 
-    print("works")
-    New_node = TextNode("blablabla", "**Bold text**", "https://xd123.com")
+    New_node = TextNode("blablabla", TextType.LINK, "https://xd123.com")
     print(New_node)
-    print("xd")
 
 
 if __name__ == "__main__":
