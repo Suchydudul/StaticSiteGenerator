@@ -14,8 +14,7 @@ class TextNode:
     def __init__(self, text, text_type, url=None):
         self.text = text
         self.text_type = TextType(text_type)
-        if url:
-            self.url = url
+        self.url = url
 
     def __eq__(self, other):
         return (
