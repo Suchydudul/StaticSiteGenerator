@@ -1,4 +1,4 @@
-from split_nodes_delimiter import (
+from split_nodes import (
     split_nodes_delimiter,
     split_nodes_image,
     split_nodes_link,
@@ -10,6 +10,19 @@ import unittest
 
 
 class TestSplitNode(unittest.TestCase):
+    def test_delim_bold_and_italic(self):
+        node = TextNode("**bold** and _italic_", TextType.TEXT)
+        new_nodes = split_nodes_delimiter([node], "**", TextType.BOLD)
+        new_nodes = split_nodes_delimiter(new_nodes, "_", TextType.ITALIC)
+        self.assertEqual(
+            [
+                TextNode("bold", TextType.BOLD),
+                TextNode(" and ", TextType.TEXT),
+                TextNode("italic", TextType.ITALIC),
+            ],
+            new_nodes,
+        )
+
     def test_split_images(self):
         node = TextNode(
             "This is text with an ![image](https://i.imgur.com/zjjcJKZ.png) and another ![second image](https://i.imgur.com/3elNhQu.png)",
